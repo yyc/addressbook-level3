@@ -1,15 +1,15 @@
 package seedu.addressbook.logic;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
 import seedu.addressbook.commands.Command;
 import seedu.addressbook.commands.CommandResult;
 import seedu.addressbook.data.AddressBook;
 import seedu.addressbook.data.person.ReadOnlyPerson;
 import seedu.addressbook.parser.Parser;
 import seedu.addressbook.storage.StorageFile;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Represents the main Logic of the AddressBook.
@@ -85,7 +85,10 @@ public class Logic {
     private CommandResult execute(Command command) throws Exception {
         command.setData(addressBook, lastShownList);
         CommandResult result = command.execute();
-        storage.save(addressBook);
+		// Save only if Command mutates
+		if (command.isMutating()) {
+			storage.save(addressBook);
+		}
         return result;
     }
 
