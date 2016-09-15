@@ -1,8 +1,8 @@
 package seedu.addressbook.commands;
 
-import seedu.addressbook.data.person.ReadOnlyPerson;
-
 import java.util.List;
+
+import seedu.addressbook.data.person.ReadOnlyPerson;
 
 
 /**
@@ -22,4 +22,9 @@ public class ListCommand extends Command {
         List<ReadOnlyPerson> allPersons = addressBook.getAllPersons().immutableListView();
         return new CommandResult(getMessageForPersonListShownSummary(allPersons), allPersons);
     }
+
+	@Override
+	public boolean isMutating() {
+		return false;
+	}
 }
