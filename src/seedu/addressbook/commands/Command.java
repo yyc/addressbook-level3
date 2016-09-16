@@ -37,9 +37,11 @@ public abstract class Command {
     }
 
     /**
-     * Executes the command and returns the result.
-     */
-    public abstract CommandResult execute();
+	 * Executes the command and returns the result.
+	 * 
+	 * @throws Exception
+	 */
+	public abstract CommandResult execute() throws Exception;
 
     /**
 	 * Checks whether the command is mutating
